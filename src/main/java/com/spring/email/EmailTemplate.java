@@ -13,7 +13,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 
 public class EmailTemplate {
 
-	private static Logger logger = Logger.getLogger(EmailTemplate.class);
+	private static final Logger logger = Logger.getLogger(EmailTemplate.class);
 
 	private static final String DEFAULT_ENCODING = "utf-8";
 

@@ -10,14 +10,15 @@
 	<url>http://maven.apache.org</url>
 
 	<properties>
-		<compile.level>1.7</compile.level>
+		<compile.level>1.8</compile.level>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.version>4.2.3.RELEASE</spring.version>
+		<spring.version>4.3.1.RELEASE</spring.version>
 		<log4j.version>1.2.17</log4j.version>
 		<junit.version>4.12</junit.version>
-		<javax.mail.version>1.5.2</javax.mail.version>
+		<javax.mail.version>1.5.5</javax.mail.version>
 		
-		<maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
+		<maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
+		<maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
 	</properties>
 
 	<dependencies>
@@ -70,6 +71,7 @@
 		</resources>
 		<plugins>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${maven-compiler-plugin.version}</version>
 				<configuration>
@@ -81,6 +83,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven-surefire-plugin.version}</version>
 				<configuration>
 					<skip>true</skip>
 				</configuration>
