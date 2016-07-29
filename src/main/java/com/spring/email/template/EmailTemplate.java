@@ -1,4 +1,4 @@
-package com.spring.email;
+package com.spring.email.template;
 
 import java.io.File;
 import java.util.Arrays;
@@ -15,17 +15,24 @@ public class EmailTemplate {
 
 	private static final Logger logger = Logger.getLogger(EmailTemplate.class);
 
-	private static final String DEFAULT_ENCODING = "utf-8";
-
 	private JavaMailSender javaMailSender;
-
 	private String from;
+	private String encoding;
+
+	public EmailTemplate() {
+	}
+
+	public EmailTemplate(JavaMailSender javaMailSender, String from, String encoding) {
+		this.javaMailSender = javaMailSender;
+		this.from = from;
+		this.encoding = encoding;
+	}
 
 	public boolean sendMail(List<String> tos, String subject, String content, List<File> attachments) {
 		boolean result = true;
 		MimeMessage message = javaMailSender.createMimeMessage();
 		try {
-			MimeMessageHelper helper = new MimeMessageHelper(message, true, DEFAULT_ENCODING);
+			MimeMessageHelper helper = new MimeMessageHelper(message, true, encoding);
 			helper.setFrom(from);
 			helper.setTo(tos.toArray(new String[tos.size()]));
 			helper.setSubject(subject);
@@ -36,10 +43,11 @@ public class EmailTemplate {
 				}
 			}
 			javaMailSender.send(message);
-			logger.info("邮件已发送至" + tos);
+			logger.info("email send success...");
+			logger.info("to : " + tos);
 		} catch (MessagingException e) {
 			result = false;
-			logger.info("邮件发送失败");
+			logger.info("email send fail...");
 		}
 		return result;
 	}
@@ -74,6 +82,14 @@ public class EmailTemplate {
 
 	public void setFrom(String from) {
 		this.from = from;
+	}
+
+	public String getEncoding() {
+		return encoding;
+	}
+
+	public void setEncoding(String encoding) {
+		this.encoding = encoding;
 	}
 
 }
